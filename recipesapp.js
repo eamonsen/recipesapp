@@ -1,23 +1,24 @@
+Recipes = new Mongo.Collection("recipes");
+
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault("counter", 0);
+  //Connects to mongodb
+  Template.recipesapp.recipes = function () {
+    return Recipes.find({});
+  };
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get("counter");
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set("counter", Session.get("counter") + 1);
-    }
-  });
+//Configures reactive-table and formats ingredient list and column labels
+  Template.recipesapp.tableSettings = function() {
+    return {fields: [
+          { key: 'name', label: 'Recipe' },
+          { key: 'cuisine', label: 'Cuisine'},
+          { key: 'type', label: 'Type of Dish'},
+          { key: 'ingredients', label: 'Ingredients', fn: function(name, recipe){return recipe.ingredients.join(', ')}},
+    ],
+    useFontAwesome: true}
+  }
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+    
 }
