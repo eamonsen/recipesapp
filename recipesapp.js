@@ -17,7 +17,20 @@ if (Meteor.isClient) {
     ],
     useFontAwesome: true}
   }
+
+  //Adding formfor adding new recipes to the db
+  Template.addButton.events({
+    'click .add': function() {
+    //Recipes.insert({
+      console.log('hello')
+      console.log($('#newName').val())
+
+    //})
+  }
+})
 }
+
+
 
 if (Meteor.isServer) {
     

@@ -5,13 +5,54 @@
 <body>
   <h1>Liz's Recipes</h1>
 
-  <div class="outer">
+ <div class="outer">
     {{> recipesapp}}
   </div>
+
+<!-- Button trigger modal -->
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  + Recipe
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Recipe Card</h4>
+      </div>
+      <div class="modal-body">
+         {{> addNew}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        {{> addButton}}
+      </div>
+    </div>
+  </div>
+</div>
  
 </body>
+
+
 <template name="recipesapp">
 	<div id="table">
     {{> reactiveTable collection=recipes settings=tableSettings}}
   </div> 
 </template> 
+
+<!-- Adding button for new recipe form-->
+<!--<form name='newPrompt'>
+	<input type='button' name='newButton' value='+'>
+</form>
+
+<!--Adding new recipe form-->
+
+<template name='addNew'>
+	<input type='text' id='newName'>
+</template>
+
+<template name='addButton'>
+	<button type="button" class="add btn btn-primary">Add</button>
+</template>
