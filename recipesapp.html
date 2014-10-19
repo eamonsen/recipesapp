@@ -22,16 +22,16 @@
         <h4 class="modal-title" id="myModalLabel">Recipe Card</h4>
       </div>
       <div class="modal-body">
-        <div id="recipeForm">
-      </div>
+        {{> addNew}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-customc btn-default" data-dismiss="modal">Close</button>
         {{> addButton}}
       </div>
+      </div>
     </div>
   </div>
-</div>
+
  
 </body>
 
@@ -47,23 +47,26 @@
 	<input type='button' name='newButton' value='+'>
 </form>
 
-<!--Adding new recipe form-->
+Adding new recipe form-->
 
-<!--<template name='addNew'>
-	<input type='text' id='newName'>
-  <!--figure out how to have input type as an array
-  <input type='text' id='newIngredients'>-->
-  <!--figure out how to add a drop down menu/auto complete for following two inputs
-  <input type='text' id='newType'>
-  <input type='text' id='newCusine'>-->
+  <template name='addNew'>
+	<input type='text' id='newName' label='Recipe Name'>
+  {{> inputAutocomplete settings=settings id="newCuisine" class="input-xlarge" label='Cuisine'}}
+  <input type='text' id='newType' label='Type of Dish'>
+  <input type='text' id='newIngredients' label='Ingredient List'>
+</template>
+
+  <template name='auto'>
+    <span class="label">{{cuisine}}</span>
+  </template>
 
 <template name='addRecipe'>
-  <button class="btn-custom btn new" data-toggle="modal" data-target="#myModal">
-  + Recipe
-</button>
+  <button class="btn-custom btn new" data-toggle="modal" data-target="#myModal">+ Recipe</button>
 </template>
 
 
 <template name='addButton'>
 	<button type="button" class="add btn btn-custom btn-primary">Add</button>
 </template>
+
+ 

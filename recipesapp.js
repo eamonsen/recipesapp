@@ -27,46 +27,42 @@ if (Meteor.isClient) {
   Template.addButton.events({
     'click .add': function() {
       var newName = $('#newName').val();
-      //var newIngredients =
-      //var newType = 
-      //var newCuisine = 
-      Recipes.insert({name: newName});
-    //Recipes.insert({
-      console.log($('#newName').val())
+      var newCuisine = $('#newCuisine').val();
+      var newType = $('#newType').val();
+      var newIngredientString = $('#newIngredients').val();
+      var newIngredients = newIngredientString.split(",");
+      Recipes.insert({name: newName, cuisine: newCuisine, type: newType, ingredients: newIngredients});
+      console.log($('#newName').val());
+      $('#myModal').modal('hide');
+      $('#newName').val('');
+      $('#newCuisine').val('');
+      $('#newType').val('');
+      $('#newIngredients').val('');
+    }
+});
 
-    //})
-  }
-})
-
-  var schema = {
-        "type": "object",
-        "properties": {
-            "name": {
-                "type": "string"
-            },
-            "cuisine": {
-                "type": "string",
-            },
-            "kind": {
-                "type": "string"
-            },
-            "ingredients": {
-                "type": "string",
-            }
+  Template.addNew.settings = function(){
+    return {
+      position: "bottom",
+      limit: 3,
+      rules:[
+        {
+          collection: Recipes,
+          field: "cuisine",
+          template: Template.auto
         }
-    };
+      ]
+    }
+  }
 
-    console.log(cuisineList);
+
+
 
   
   var isFormRendered = false
  Template.addRecipe.events({
     'click .new': function() {
-      cuisineList = _.uniq(Recipes.find({}, {
-        sort: {cuisine: 1}, fields: {cuisine: true}
-      }).fetch().map(function(x) {
-        return x.cuisine;
-      }), true);
+      
        var options = {
         "fields": {
             "name": {
@@ -97,17 +93,11 @@ if (Meteor.isClient) {
           }
         };  
 
-      if(!isFormRendered){
-        $("#recipeForm").alpaca({
-        "schema": schema,
-        "options": options,
-        "ui": "bootstrap"
-      });
-        isFormRendered = true
+     
+     
       }
       
-    }
-  })
+    })
 }   
     
 if (Meteor.isServer) {
