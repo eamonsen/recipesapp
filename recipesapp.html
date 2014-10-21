@@ -22,7 +22,7 @@
         <h4 class="modal-title" id="myModalLabel">Recipe Card</h4>
       </div>
       <div class="modal-body">
-        {{> addNew}}
+         {{> autoForm_addNew schema=SchemaAddNew id="newForm" template="autoForm_addNew"}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-customc btn-default" data-dismiss="modal">Close</button>
@@ -49,11 +49,15 @@
 
 Adding new recipe form-->
 
-  <template name='addNew'>
-	<input type='text' id='newName' label='Recipe Name'>
+  <template name='autoForm_addNew'>
+    {{#autoForm collection="Recipes" id="newName" type="insert"}}
+  <fieldset>
+	<div class = "form"><label><input type='text' id='newName'/>Recipe Name</label></div>
   {{> inputAutocomplete settings=settings id="newCuisine" class="input-xlarge" label='Cuisine'}}
   <input type='text' id='newType' label='Type of Dish'>
   <input type='text' id='newIngredients' label='Ingredient List'>
+</fieldset>
+  {{/autoForm}}
 </template>
 
   <template name='auto'>

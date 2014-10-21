@@ -23,6 +23,11 @@ if (Meteor.isClient) {
     useFontAwesome: true}
   }
 
+SchemaAddNew: {
+  type: String
+}
+  
+
   //Adding form for adding new recipes to the db
   Template.addButton.events({
     'click .add': function() {
@@ -55,10 +60,6 @@ if (Meteor.isClient) {
     }
   }
 
-
-
-
-  
   var isFormRendered = false
  Template.addRecipe.events({
     'click .new': function() {
