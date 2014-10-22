@@ -62,7 +62,16 @@ Adding new recipe form-->
 
   <div class='form-group'>
     <label for='newType'>Type of Dish:</label>
-    <input type='text' id='newType' class='form-control'>
+          <select class="form-control" id="sel1">
+            <option></option>
+            <option>Appetizer</option>
+            <option>Side Dish</option>
+            <option>Dip</option>
+            <option>Sauce</option>
+            <option>Bread/Baked Good</option>
+            <option>Entree</option>
+            <option>Dessert</option>
+          </select>
   </div>
 
   <div class='form-group'>
@@ -73,7 +82,7 @@ Adding new recipe form-->
 </template>
 
   <template name='auto'>
-    <span class="label">{{cuisine}}</span>
+    <span class="form-group label">{{cuisine}}</span>
   </template>
 
 <template name='addRecipe'>
