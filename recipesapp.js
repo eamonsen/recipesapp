@@ -12,12 +12,19 @@ if (Meteor.isClient) {
     return Recipes.find({});
   };
 
+  //Capitolizes first letter of first word of string 
+
+  function capitalize(string)
+  {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
 //Configures reactive-table and formats ingredient list and column labels
   Template.recipesapp.tableSettings = function() {
     return {fields: [
-          { key: 'name', label: 'Recipe' },
-          { key: 'cuisine', label: 'Cuisine'},
-          { key: 'type', label: 'Type of Dish'},
+          { key: 'name', label: 'Recipe', fn: function(name, recipe){return capitalize(recipe.name)} },
+          { key: 'cuisine', label: 'Cuisine', fn: function(name, recipe){return capitalize(recipe.cuisine)}},
+          { key: 'type', label: 'Type of Dish', fn: function(name, recipe){return capitalize(recipe.type)}},
           { key: 'ingredients', label: 'Ingredients', fn: function(name, recipe){return recipe.ingredients.join(', ')}},
     ],
     useFontAwesome: true}
