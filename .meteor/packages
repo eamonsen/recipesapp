@@ -7,5 +7,9 @@ meteor-platform
 autopublish
 insecure
 aslagle:reactive-table
-bootstrap
-
+mizzao:bootstrap-3
+mrt:alpaca-bootstrap
+mrt:alpaca
+sergeyt:typeahead
+mizzao:autocomplete
+aldeed:autoform
